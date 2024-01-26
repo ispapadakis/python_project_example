@@ -67,7 +67,8 @@ def scrape_info_table(ticker_list, text_limit=500):
         d = {k:v[:text_limit] for k,v in scrape_info(ticker).items()}
         tbls.append(pd.Series(d))
     df = pd.concat(tbls, axis=1, keys=keys)
-    return df
+    df.columns.name = "Ticker"
+    return df.transpose()
 
 
 def main():
