@@ -3,6 +3,7 @@ from fix_data import fix_format, plot_employees
 
 def main():
     # Scrape Company Data from finance.google.com
+    # Expects a ticker list with ticker symbols of Nasdaq Components
     ticker_list = ["TSLA","AAPL","MSFT","AMZN"]
     df = scrape_info_table(ticker_list)
     df = fix_format(df)
