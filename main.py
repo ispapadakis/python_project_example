@@ -9,7 +9,5 @@ def main():
     print(df)
     plot_employees(df)
 
-    
-
 if __name__ == "__main__":
     main()
