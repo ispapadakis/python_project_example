@@ -22,7 +22,6 @@ def get_parsed_html(ticker):
     html_bytes = page.read()
     html = html_bytes.decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
-    print(type(soup))
     return soup
 
 def get_entry_attributes(focus, label_class, attr_class, about_class):
