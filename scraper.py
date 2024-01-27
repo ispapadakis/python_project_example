@@ -7,12 +7,22 @@ import pandas as pd
 # Assuming you are using version 3.10
 
 def get_parsed_html(ticker):
-    """ Get Ticker Data from finance.google.com (Use HTML PARSER)"""
+    """
+    Get Ticker Data from finance.google.com (Use HTML PARSER)
+
+    Args:
+        ticker (str): Ticker Symbol of Nasdaq Company
+
+    Returns:
+        soup (bs4.BeautifulSoup): BeautifulSoup Object Containg Parsed HTML Info 
+    
+    """
     url = f"https://www.google.com/finance/quote/{ticker}:NASDAQ"
     page = urlopen(url)
     html_bytes = page.read()
     html = html_bytes.decode("utf-8")
     soup = BeautifulSoup(html, "html.parser")
+    print(type(soup))
     return soup
 
 def get_entry_attributes(focus, label_class, attr_class, about_class):
@@ -60,6 +70,16 @@ def scrape_info(ticker):
     return entry_attrs
         
 def scrape_info_table(ticker_list, text_limit=500):
+    """
+    Aggregate Scraped Information in One Pandas Data Frame
+
+    Args:
+        ticker_list (list): List of Ticker Symbols
+        text_limit (int): limit the length of strings (useful when About information string is too long)
+
+    Returns:
+        pandas.DataFrame: Collected Results in Table Form
+    """
     tbls = []
     keys = []
     for ticker in ticker_list:
@@ -72,6 +92,13 @@ def scrape_info_table(ticker_list, text_limit=500):
 
 
 def main():
+    """
+    Test your Code
+
+    - Print Individual Results For Each Company In a List
+    - Aggregate Results in Table Form
+    - Save Aggregated Results as .csv file
+    """
     ticker_list = ["TSLA","AAPL","MSFT","AMZN"]
     for tck in ticker_list:
         print("\n"*3)

@@ -5,7 +5,15 @@ from bs4 import BeautifulSoup
 # FOLLOW LINK https://www.google.com/finance/quote/AAPL:NASDAQ for INFO
 
 def get_raw_text(ticker):
-    """ Get Ticker Data from finance.google.com (Without HTML PARSER)"""
+    """
+    Get Ticker Data from finance.google.com (Without HTML PARSER)
+    
+    Args:
+        ticker (str): Ticker Symbol of Nasdaq Company
+
+    Returns:
+        html (str): text HTML document 
+    """
     url = f"https://www.google.com/finance/quote/{ticker}:NASDAQ"
     page = urlopen(url)
     html_bytes = page.read()
@@ -13,7 +21,16 @@ def get_raw_text(ticker):
     return html
 
 def get_parsed_text(ticker):
-    """ Get Ticker Data from finance.google.com (Use HTML PARSER)"""
+    """
+    Get Ticker Data from finance.google.com (Use HTML PARSER)
+
+    Args:
+        ticker (str): Ticker Symbol of Nasdaq Company
+
+    Returns:
+        soup (bs4.BeautifulSoup): BeautifulSoup Object Containg Parsed HTML Info 
+    
+    """
     url = f"https://www.google.com/finance/quote/{ticker}:NASDAQ"
     page = urlopen(url)
     html_bytes = page.read()
