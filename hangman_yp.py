@@ -7,6 +7,63 @@ class Hangman:
         self.word = word
         print("Welcome to hangman")
         print("-"*20)
+        # Tuple of Hangman Figures
+        self.hangman = (
+            """
+            +----+  
+            |    :
+            |   
+            |   
+            |   
+            | 
+            ===
+            """,
+            """
+            +----+  
+            |    :
+            |    O 
+            |   
+            |   
+            | 
+            ===
+            """,
+            """
+            +----+  
+            |    :
+            |    O 
+            |   /
+            |   
+            | 
+            ===
+            """,
+            """
+            +----+  
+            |    :
+            |    O 
+            |   /|\ 
+            |   
+            |
+            === 
+            """,
+            """
+            +----+  
+            |    :
+            |    O 
+            |   /|\ 
+            |   /
+            | 
+            ===
+            """,
+            """
+            +----+  
+            |    :
+            |    O 
+            |   /|\ 
+            |   / \ 
+            | 
+            ===
+            """
+        )
 
     def printWord(self, guessedLetters):
         allCorrect = True
@@ -30,18 +87,19 @@ class Hangman:
         while True:
             ### Prompt user for input
             letterGuessed = input("\nGuess a letter: ")
-            ### Test for Input Format for Errors
+            ### Test for Input Format Errors
             if letterGuessed in current_letters_guessed:
                 print("You guessed this letter earlier. Try again.")
                 continue
-            if len(letterGuessed) > 1:
+            elif len(letterGuessed) > 1:
                 print("Guess one letter at a time. Try again.")
                 continue
-            if not letterGuessed.isalpha():
+            elif not letterGuessed.isalpha():
                 print("Your guess needs to be a letter. Try again.")
                 continue
-            ### Accept Input
-            current_letters_guessed.append(letterGuessed.lower())
+            else:
+                ### Accept Input
+                current_letters_guessed.append(letterGuessed.lower())
 
             ### If Guess is Wrong Increment Error Count
             if letterGuessed not in self.word:
@@ -50,60 +108,16 @@ class Hangman:
             ### Give Feedback to User
             print("\nLetters guessed so far: ", end="")
             self.printGuesses(current_letters_guessed)
-            self.print_hangman(amount_of_times_wrong)
+            print(self.hangman[amount_of_times_wrong])
             allGuessesCorrect = self.printWord(current_letters_guessed)
 
             ### Check if Game is Over
-            if amount_of_times_wrong >= 6:
+            if amount_of_times_wrong >= len(self.hangman) - 1:
                 print("\nYou Lose! Better Luck Next Time.")
                 return
             if allGuessesCorrect:
                 print("\nCongratulations, You Win!")
                 return
-        
-    def print_hangman(self, wrong):
-        if(wrong == 0):
-            print("\n+---+")
-            print("    |")
-            print("    |")
-            print("    |")
-            print("   ===")
-        elif(wrong == 1): 
-            print("\n+---+")
-            print("O   |")
-            print("    |")
-            print("    |")
-            print("   ===")
-        elif(wrong == 2):
-            print("\n+---+")
-            print("O   |")
-            print("|   |")
-            print("    |")
-            print("   ===")
-        elif(wrong == 3):
-            print("\n+---+")
-            print(" O  |")
-            print("/|  |")
-            print("    |")
-            print("   ===")
-        elif(wrong == 4):
-            print("\n+---+")
-            print(" O  |")
-            print("/|\ |")
-            print("    |")
-            print("   ===")
-        elif(wrong == 5):
-            print("\n+---+")
-            print(" O  |")
-            print("/|\ |")
-            print("/   |")
-            print("   ===")
-        elif(wrong == 6):
-            print("\n+---+")
-            print(" O   |")
-            print("/|\  |")
-            print("/ \  |")
-            print("    ===")
 
 if __name__ == "__main__":
     wordDictionary = ["sunflower", "house", "diamond", "memes","yeet","hello", "howdy", "like", "subscribe"]
