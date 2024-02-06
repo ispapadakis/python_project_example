@@ -1,10 +1,6 @@
 # Got Ideas from https://github.com/ShaunHalverson/PythonHangman/blob/main/main.py
 
-
 import random
-wordDictionary = ["sunflower", "house", "diamond", "memes","yeet","hello", "howdy", "like", "subscribe"]
-### Choose a random word
-randomWord = random.choice(wordDictionary)
     
 class Hangman:
     def __init__(self, word):
@@ -52,7 +48,7 @@ class Hangman:
                 amount_of_times_wrong += 1
 
             ### Give Feedback to User
-            print("\nLetters guessed so far: ")
+            print("\nLetters guessed so far: ", end="")
             self.printGuesses(current_letters_guessed)
             self.print_hangman(amount_of_times_wrong)
             allGuessesCorrect = self.printWord(current_letters_guessed)
@@ -110,5 +106,8 @@ class Hangman:
             print("    ===")
 
 if __name__ == "__main__":
+    wordDictionary = ["sunflower", "house", "diamond", "memes","yeet","hello", "howdy", "like", "subscribe"]
+    ### Choose a random word
+    randomWord = random.choice(wordDictionary)
     game = Hangman(randomWord)
     game.play()
