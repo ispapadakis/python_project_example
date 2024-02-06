@@ -34,7 +34,7 @@ class Hangman:
         while True:
             ### Prompt user for input
             letterGuessed = input("\nGuess a letter: ")
-            ### Test for Input Errors
+            ### Test for Input Format for Errors
             if letterGuessed in current_letters_guessed:
                 print("You guessed this letter earlier. Try again.")
                 continue
@@ -42,7 +42,7 @@ class Hangman:
                 print("Guess one letter at a time. Try again.")
                 continue
             if not letterGuessed.isalpha():
-                print("You guess needs to be a letter. Try again.")
+                print("Your guess needs to be a letter. Try again.")
                 continue
             ### Accept Input
             current_letters_guessed.append(letterGuessed.lower())
