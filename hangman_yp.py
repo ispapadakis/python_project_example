@@ -57,6 +57,7 @@ class Hangman:
             self.print_hangman(amount_of_times_wrong)
             allGuessesCorrect = self.printWord(current_letters_guessed)
 
+            ### Check if Game is Over
             if amount_of_times_wrong >= 6:
                 print("\nYou Lose! Better Luck Next Time.")
                 return
