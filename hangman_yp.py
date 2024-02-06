@@ -76,28 +76,27 @@ class Hangman:
     current_letters_guessed = []
     allGuessesCorrect = False
 
-    while(amount_of_times_wrong < 6 and not allGuessesCorrect):
-      ### Prompt user for input
-      letterGuessed = input("\nGuess a letter: ")
-      current_letters_guessed.append(letterGuessed)
-      print("\nLetters guessed so far: ")
-      printGuesses(current_letters_guessed)
-      if letterGuessed in self.word:
-        ### User is Right
-        ### Update the drawing and Print Word
-        print_hangman(amount_of_times_wrong)
-        allGuessesCorrect = self.printWord(current_letters_guessed)
-      else:
-        ### User is Wrong
-        amount_of_times_wrong+=1
-        ### Update the drawing and Print Word
+    while True:
+        ### Prompt user for input
+        letterGuessed = input("\nGuess a letter: ")
+        current_letters_guessed.append(letterGuessed)
+
+        ### If Guess is Wrong Increment Error Count
+        if letterGuessed not in self.word:
+            amount_of_times_wrong += 1
+
+        ### Give Feedback to User
+        print("\nLetters guessed so far: ")
+        printGuesses(current_letters_guessed)
         print_hangman(amount_of_times_wrong)
         allGuessesCorrect = self.printWord(current_letters_guessed)
 
-    if allGuessesCorrect:
-      print("\nCongratulations, You Win!")
-    else:
-        print("\nYou Lose! Better Luck Next Time.")
+        if amount_of_times_wrong >= 6:
+            print("\nYou Lose! Better Luck Next Time.")
+            return
+        if allGuessesCorrect:
+            print("\nCongratulations, You Win!")
+            return
 
 game = Hangman(randomWord)
 game.play()
